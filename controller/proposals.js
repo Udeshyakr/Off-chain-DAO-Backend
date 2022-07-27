@@ -29,12 +29,6 @@ module.exports.createProposal = async (req, res) => {
               })
         }
         
-        // axios.post(`${baseURL}/proposal`) //------------>
-        // .then(response => console.log(response))
-        // .catch(error => {
-        //   console.error('There was an error!', error);
-        // });
-            
     } catch (error) {
         return res.status(409).json({ error: error.message })
     }
