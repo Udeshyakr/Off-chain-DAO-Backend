@@ -7,6 +7,7 @@ require('dotenv').config();
 const dotenv = require('dotenv');
 const connectDB = require('./database/connect');
 const mongoose = require("mongoose");
+const cors = require("cors");
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());// middleware
 app.use(express.urlencoded({ extended: true}));
 const proposalRoutes = require('./routes/proposal');
+app.use(cors());
 
 app.use(express.static(__dirname + "public"));
 app.use(express.static(path.resolve(__dirname, "../public/index.html")))

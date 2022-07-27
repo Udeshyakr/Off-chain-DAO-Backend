@@ -1,10 +1,8 @@
 const pinata = require('../utils/pinata');
 const ProposalSchema = require('../models/proposals.js');
+const axios = require('axios');
 
-
-
-
-
+const baseURL = "http://localhost:4000";
 
 module.exports.createProposal = async (req, res) => {
     try {
@@ -30,6 +28,12 @@ module.exports.createProposal = async (req, res) => {
                 message: 'PROPOSAL already exists.',
               })
         }
+        
+        // axios.post(`${baseURL}/proposal`) //------------>
+        // .then(response => console.log(response))
+        // .catch(error => {
+        //   console.error('There was an error!', error);
+        // });
             
     } catch (error) {
         return res.status(409).json({ error: error.message })
@@ -65,7 +69,7 @@ module.exports.getAllProposals = async (req, res) => {
     }
 }
 
-module.exports.proposalById = async (req, res) => {
+module.exports.getProposal = async (req, res) => {
     try {
         let proposal = await ProposalSchema.findOne({ProposalHash});
         res.status(200).json({'success': true, 'data': proposal})
